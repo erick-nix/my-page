@@ -1,0 +1,19 @@
+---
+import BlogPostLayout from "../layouts/BlogPostLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "en" } }, { params: { lang: "pt" } }, { params: { lang: undefined } }];
+}
+
+const { lang } = Astro.params;
+let index = await getCollection("index", ({ id }) => {
+  return id.includes(lang);
+});
+
+const { Content } = await render(index[0]);
+---
+
+<BlogPostLayout frontmatter={index[0].data}>
+  <Content />
+</BlogPostLayout>

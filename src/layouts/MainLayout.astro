@@ -1,0 +1,37 @@
+---
+import Email from "../assets/icons/mail.svg";
+import Github from "../assets/icons/github.svg";
+import NavLink from "../components/NavLink.astro";
+---
+
+<div class="gpa flex h-full w-full max-w-[1290px] flex-col items-center gap-5.5 pt-10">
+  <div class="flex w-175 px-6">
+    <div class="flex h-fit gap-4">
+      <NavLink href="/">erick-nix</NavLink>
+      <NavLink href="/blog/">blog</NavLink>
+    </div>
+  </div>
+  <div class="flex h-full w-full flex-col border-2 border-b-0 border-(--border)">
+    <slot />
+    <div class="flex w-full bg-(--surface) px-[22px] py-[16px] select-none">
+      <div class="flex gap-[15px] text-xs text-(--darkBlue)">
+        <a href="">
+          <div
+            class="flex cursor-pointer items-center gap-[6px] hover:text-(--surface-blue) hover:underline"
+          >
+            <Email width={18} height={18} fill="var(--darkBlue)" />
+            <p>Email</p>
+          </div>
+        </a>
+        <a href="https://github.com/erick-nix" target="_blank">
+          <div
+            class="flex cursor-pointer items-center gap-[6px] hover:text-(--surface-blue) hover:underline"
+          >
+            <Github width={18} height={18} fill="var(--darkBlue)" />
+            <p>Github</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

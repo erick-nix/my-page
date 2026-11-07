@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "en" } }, { params: { lang: "pt" } }, { params: { lang: undefined } }];
+}
+
+const { lang } = Astro.params;
+let posts = await getCollection("blog", ({ id }) => {
+  return id.includes(lang);
+});
+
+let messageEmpty = "";
+if (posts.length === 0) {
+  messageEmpty = lang == "pt" ? "Sem posts encontrados." : "No posts found.";
+}
+---
+
+<Layout>
+  <MainLayout>
+    <div
+      class="mainBlog flex h-full w-full max-w-[700px] flex-col gap-[26px] self-center px-[24px] py-[50px]"
+    >
+      <div class="flex items-center gap-[14px]">
+        <h1 class="font-mono text-[28px] font-semibold text-(--surface-blue)">Posts</h1>
+        <div class="flex gap-[10px] text-sm text-(--darkBlue) transition-colors select-none">
+          <a href="en">
+            <button
+              class:list={[lang == "en" && "text-(--surface-blue)"]}
+              class="cursor-pointer underline hover:text-(--surface-blue)">English</button
+            >
+          </a>
+          <a href="pt">
+            <button
+              class:list={[lang == "pt" && "text-(--surface-blue)"]}
+              class="cursor-pointer underline hover:text-(--surface-blue)">Português</button
+            >
+          </a>
+        </div>
+      </div>
+      <div class="flex flex-col gap-[28px]">
+        {
+          posts.map((post) => (
+            <a href={`/blog/${post.id}`}>
+              <div class="flex cursor-pointer flex-col gap-[16px] select-none">
+                <p class="text-sm text-(--darkBlue)">Dec 26, 2023</p>
+                <h1 class="font-mono text-[22px] font-semibold text-(--surface-blue)">
+                  {post.data.title}
+                </h1>
+              </div>
+            </a>
+          ))
+        }
+        {messageEmpty && <p class="text-sm text-(--darkBlue)">{messageEmpty}</p>}
+      </div>
+    </div>
+  </MainLayout>
+</Layout>

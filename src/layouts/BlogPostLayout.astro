@@ -1,0 +1,31 @@
+---
+import Layout from "./Layout.astro";
+import MainLayout from "./MainLayout.astro";
+import { dateOptions } from "../utils/date.ts";
+const { frontmatter } = Astro.props;
+
+const date = new Date(frontmatter.pubDate);
+const dateFormatted = date.toLocaleDateString("en-US", dateOptions);
+---
+
+<Layout>
+  <MainLayout>
+    <div
+      class="flex h-full w-full max-w-[700px] flex-col gap-[18px] self-center px-[24px] py-[50px]"
+    >
+      <div class="flex flex-col gap-[14px]">
+        <h1 class="font-mono text-[28px] font-semibold text-(--surface-blue)">
+          {frontmatter.title}
+        </h1>
+        <p class="text-sm text-(--darkBlue)">
+          {dateFormatted}
+        </p>
+      </div>
+      <div
+        class="flex flex-col gap-[12px] text-base leading-[1.9] [&_h1]:text-[24px] [&_h1]:leading-[1.6] [&_h1]:font-bold [&_h1]:text-(--surface-blue)"
+      >
+        <slot />
+      </div>
+    </div>
+  </MainLayout>
+</Layout>

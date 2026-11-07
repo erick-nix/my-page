@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans:
+    "Arimo", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono:
+    "Cascadia Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  --background: #161821;
+  --surface: #181a24;
+  --blue: #8ea0b9;
+  --white: #e5e5e3;
+  --surface-blue: #91acd1;
+  --darkBlue: #4b5068;
+  --darkWhite: #a7a7a9;
+  --border: #252735;
+}

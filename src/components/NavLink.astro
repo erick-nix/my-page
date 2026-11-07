@@ -1,0 +1,28 @@
+---
+const { href } = Astro.props;
+const locales = ["en", "pt"];
+
+const clean = (p: string) =>
+  p
+    .split("/")
+    .filter(Boolean)
+    .filter((s) => !locales.includes(s));
+
+const current = clean(Astro.url.pathname);
+const target = clean(href);
+
+const active = target.length === 0 ? current.length === 0 : current[0] === target[0];
+---
+
+<a href={[href]}>
+  <div
+    class:list={[
+      "flex cursor-pointer px-5 py-2.5 text-(--darkBlue) transition-colors select-none hover:bg-(--blue) hover:text-(--background)",
+      active && "bg-(--blue) text-(--background)!",
+    ]}
+  >
+    <h1 class="font-mono text-base font-extrabold uppercase">
+      <slot />
+    </h1>
+  </div>
+</a>
