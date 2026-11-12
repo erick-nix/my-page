@@ -10,22 +10,34 @@ const dateFormatted = date.toLocaleDateString("en-US", dateOptions);
 
 <Layout>
   <MainLayout>
-    <div
-      class="flex h-full w-full max-w-[700px] flex-col gap-[18px] self-center px-[24px] py-[50px]"
-    >
-      <div class="flex flex-col gap-[14px]">
-        <h1 class="font-mono text-[28px] font-semibold text-(--surface-blue)">
-          {frontmatter.title}
-        </h1>
-        <p class="text-sm text-(--darkBlue)">
-          {dateFormatted}
-        </p>
-      </div>
-      <div
-        class="flex flex-col gap-[12px] text-base leading-[1.9] [&_h1]:text-[24px] [&_h1]:leading-[1.6] [&_h1]:font-bold [&_h1]:text-(--surface-blue)"
-      >
-        <slot />
+    <div class="flex w-full flex-1 flex-col">
+      <div class="flex w-full max-w-[700px] flex-col gap-[18px] self-center px-[24px] py-[50px]">
+        <div class="flex flex-col gap-[14px]">
+          <h1 class="font-mono text-[28px] font-semibold text-(--surface-blue)">
+            {frontmatter.title}
+          </h1>
+          <p class="text-sm text-(--darkBlue)">
+            {dateFormatted}
+          </p>
+        </div>
+        <article class="flex flex-1 flex-col gap-[12px] text-base leading-[1.9]">
+          <slot />
+        </article>
       </div>
     </div>
   </MainLayout>
 </Layout>
+
+<style>
+  article :global(h1) {
+    font-size: 24px;
+    line-height: 1.6;
+    font-weight: bold;
+    color: var(--surface-blue);
+  }
+
+  article :global(a) {
+    color: var(--surface-blue);
+    text-decoration-line: underline;
+  }
+</style>

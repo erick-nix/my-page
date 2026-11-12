@@ -1,7 +1,7 @@
 ---
 layout: ../../../layouts/BlogPostLayout.astro
-title: My Blog Post EN
+title: Hello World!
 pubDate: 10/23/2026
 ---
 
-Test EN!
+Banana!

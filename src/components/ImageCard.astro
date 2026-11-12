@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 const { src, width = 150, height, desc } = Astro.props;
 ---
 
-<div class="flex flex-col gap-[12px]">
+<div class="my-1 flex flex-col gap-[12px]">
   <Image src={src} alt="Profile" width={width} height={desc} />
-  <p class="text-sm text-(--darkWhite)">{desc}</p>
+  <p class="max-w-3/4 text-sm text-(--darkWhite)">{desc}</p>
 </div>
